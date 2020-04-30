@@ -24,7 +24,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/payment/create")
-    public CommenResult commenResult(Payment payment) {
+    public CommenResult<Payment> commenResult(Payment payment) {
         int result = paymentService.create(payment);
         if (result > 0) {
             return new CommenResult(200, "create success", result);
