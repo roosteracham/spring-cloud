@@ -14,3 +14,14 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.example.entities
+
+
+eureka:
+  client:
+    # 不向注册中心注册自己
+    registerWithEureka: true
+    # false 表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    fetchRegistry: true
+    serviceUrl:
+      # 设置于eureka server交互的地址查询服务和注册服务都系要依赖这个地址
+      defaultZone: http://localhost:7001/eureka/
