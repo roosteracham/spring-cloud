@@ -1,9 +1,11 @@
 package com.example.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.example.entities.CommenResult;
 import com.example.entities.Payment;
 import com.example.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +24,15 @@ public class PaymentController {
 
     @Resource
     private PaymentService paymentService;
+
+    @Resource
+    private DiscoveryClient discoveryClient;
+
+    @GetMapping("/payment/discevory")
+    public Object getDiscovery() {
+        log.info(JSON.toJSONString(discoveryClient));
+        return discoveryClient.getInstances("CLOUD-PAYMENT-SERIVCE");
+    }
 
     @PostMapping("/payment/create")
     public CommenResult<Payment> commenResult(@RequestBody Payment payment) {
