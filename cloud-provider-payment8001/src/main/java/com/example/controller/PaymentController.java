@@ -4,10 +4,10 @@ import com.example.entities.CommenResult;
 import com.example.entities.Payment;
 import com.example.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -24,7 +24,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping("/payment/create")
-    public CommenResult<Payment> commenResult(Payment payment) {
+    public CommenResult<Payment> commenResult(@RequestBody Payment payment) {
         int result = paymentService.create(payment);
         if (result > 0) {
             return new CommenResult(200, "create success", result);
