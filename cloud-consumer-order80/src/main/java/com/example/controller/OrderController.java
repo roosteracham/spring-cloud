@@ -1,4 +1,4 @@
-package example.controller;
+package com.example.controller;
 
 import com.example.entities.CommenResult;
 import com.example.entities.Payment;

@@ -5,6 +5,7 @@ import com.example.entities.CommenResult;
 import com.example.entities.Payment;
 import com.example.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,9 @@ public class PaymentController {
 
     @Resource
     private PaymentService paymentService;
+
+    @Value("${server.port}")
+    private String port;
 
     @Resource
     private DiscoveryClient discoveryClient;
@@ -48,9 +52,9 @@ public class PaymentController {
     public CommenResult commenResult(@PathVariable("id") Long id) {
         Payment payment = paymentService.getPaymentById(id);
         if (Objects.nonNull(payment)) {
-            return new CommenResult(200, "insert success", payment);
+            return new CommenResult(200, "insert success, " + port, payment);
         } else {
-            return new CommenResult(500, "insert fail");
+            return new CommenResult(500, "insert fail, " + port);
         }
     }
 }
