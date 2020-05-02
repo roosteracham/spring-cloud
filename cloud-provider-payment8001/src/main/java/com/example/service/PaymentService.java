@@ -1,5 +1,6 @@
 package com.example.service;
 
+import com.example.entities.CommenResult;
 import com.example.entities.Payment;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,4 +10,5 @@ public interface PaymentService {
 
     Payment getPaymentById(@Param("id") Long id);
 
+    CommenResult getPaymentTomeOut();
 }

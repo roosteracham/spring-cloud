@@ -16,4 +16,7 @@ public interface PaymentFeignService {
 
     @PostMapping("/payment/create")
     public CommenResult<Payment> create(@RequestBody Payment payment);
+
+    @GetMapping("/payment/get/to")
+    public CommenResult getPaymentTomeOut();
 }

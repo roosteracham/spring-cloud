@@ -27,4 +27,9 @@ public class OrderController {
     public CommenResult commenResult(@PathVariable("id") Long id) {
         return paymentFeignService.getPayment(id);
     }
+
+    @GetMapping("/payment/get/to")
+    public CommenResult getPaymentTomeOut() {
+        return paymentFeignService.getPaymentTomeOut();
+    }
 }

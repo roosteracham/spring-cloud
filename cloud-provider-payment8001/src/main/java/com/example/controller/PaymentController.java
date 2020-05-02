@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.example.entities.CommenResult;
 import com.example.entities.Payment;
 import com.example.service.PaymentService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author rooster
@@ -31,6 +34,11 @@ public class PaymentController {
 
     @Resource
     private DiscoveryClient discoveryClient;
+
+    @GetMapping("/payment/get/to")
+    public CommenResult getPaymentTomeOut() throws InterruptedException {
+        return paymentService.getPaymentTomeOut();
+    }
 
     @GetMapping("/payment/discevory")
     public Object getDiscovery() {
