@@ -11,11 +11,11 @@ spring:
           uri: http://localhost:8001
           predicates:
             - Path=/payment/get/**
-
-        - id: payment-route2
-          uri: http://localhost:8001
-          predicates:
-            - Path=/payment/cb/get/**
+#
+#        - id: payment-route2
+#          uri: http://localhost:8001
+#          predicates:
+#            - Path=/payment/cb/get/**
 eureka:
   client:
     # 不向注册中心注册自己
