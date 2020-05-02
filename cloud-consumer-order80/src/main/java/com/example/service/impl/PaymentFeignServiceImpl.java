@@ -8,6 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class PaymentFeignServiceImpl implements PaymentFeignService {
     @Override
+    public CommenResult getPaymentCB(Long id) {
+        return new CommenResult<>(500, "error , getPaymentCB");
+    }
+
+    @Override
     public CommenResult<Payment> getPayment(Long id) {
         return new CommenResult<>(500, "error , getPayment");
     }

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(value = "CLOUD-PAYMENT-SERIVCE", fallback = PaymentFeignServiceImpl.class)
 public interface PaymentFeignService {
 
+    @GetMapping("/payment/cb/get/{id}")
+    public CommenResult getPaymentCB(@PathVariable("id") Long id);
+
     @GetMapping("/payment/get/{id}")
     CommenResult<Payment> getPayment(@PathVariable("id") Long id);
 

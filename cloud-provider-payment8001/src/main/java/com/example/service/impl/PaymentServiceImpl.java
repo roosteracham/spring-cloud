@@ -28,6 +28,25 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
+    @HystrixCommand(fallbackMethod = "getPaymentCB_FB", commandProperties = {
+            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
+            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
+            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
+            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60")
+    })
+    public CommenResult getPaymentCB(Long id) {
+        if (id < 5) {
+            throw new RuntimeException(" little id..");
+        }
+
+        return new CommenResult(200, "success, getPaymentCB");
+    }
+
+    public CommenResult getPaymentCB_FB(Long id) {
+        return new CommenResult(500, "降级方法8001, getPaymentCB_FB, id: " + id);
+    }
+
+    @Override
     @HystrixCommand(fallbackMethod = "getPaymentTomeOut_FB",  commandProperties = {
             @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
     })

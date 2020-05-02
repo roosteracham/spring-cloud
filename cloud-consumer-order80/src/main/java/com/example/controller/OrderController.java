@@ -22,6 +22,11 @@ public class OrderController {
     @Resource
     private PaymentFeignService paymentFeignService;
 
+    @GetMapping("/payment/cb/get/{id}")
+    public CommenResult getPaymentCB(@PathVariable("id") Long id) {
+        return paymentFeignService.getPaymentCB(id);
+    }
+
     @GetMapping("/consumer/payment/create")
     public CommenResult<Payment> create(Payment payment) {
         return paymentFeignService.create(payment);

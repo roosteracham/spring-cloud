@@ -35,6 +35,12 @@ public class PaymentController {
     @Resource
     private DiscoveryClient discoveryClient;
 
+
+    @GetMapping("/payment/cb/get/{id}")
+    public CommenResult getPaymentCB(@PathVariable("id") Long id) {
+        return paymentService.getPaymentCB(id);
+    }
+
     @GetMapping("/payment/get/to")
     public CommenResult getPaymentTomeOut() throws InterruptedException {
         return paymentService.getPaymentTomeOut();

@@ -11,4 +11,6 @@ public interface PaymentService {
     Payment getPaymentById(@Param("id") Long id);
 
     CommenResult getPaymentTomeOut();
+
+    CommenResult getPaymentCB(Long id);
 }
