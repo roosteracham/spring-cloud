@@ -38,7 +38,7 @@ public class OrderController {
 //    })
     @HystrixCommand // 走全局降级
     public CommenResult getPaymentTomeOut() {
-        int a = 1/0;
+//        int a = 1/0;
         return paymentFeignService.getPaymentTomeOut();
     }
 
