@@ -3,6 +3,8 @@ package com.example.controller;
 import com.example.entities.CommenResult;
 import com.example.entities.Payment;
 import com.example.service.PaymentFeignService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +31,15 @@ public class OrderController {
     }
 
     @GetMapping("/payment/get/to")
+    @HystrixCommand(fallbackMethod = "getPaymentTomeOut_FB",  commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000")
+    })
     public CommenResult getPaymentTomeOut() {
+        int a = 1/0;
         return paymentFeignService.getPaymentTomeOut();
+    }
+
+    public CommenResult getPaymentTomeOut_FB() {
+        return new CommenResult(500, "降级方法80");
     }
 }

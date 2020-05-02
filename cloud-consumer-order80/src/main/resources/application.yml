@@ -18,6 +18,9 @@ feign:
       default:
         connectTimeout: 10000
         readTimeout: 60000
+  hystrix:
+    enabled: true
+
 
 spring:
   application:
