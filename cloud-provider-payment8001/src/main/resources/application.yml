@@ -28,3 +28,10 @@ eureka:
   instance:
     instance-id: payment-service
     prefer-ip-address: true
+
+# hystrix dashboard
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
