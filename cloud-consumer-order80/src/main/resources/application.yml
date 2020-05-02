@@ -13,3 +13,6 @@ eureka:
 spring:
   application:
     name: cloud-order-service
+logging:
+  level:
+    com.example.service.PaymentFeignService: debug

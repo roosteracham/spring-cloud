@@ -39,7 +39,7 @@ public class PaymentController {
     }
 
     @PostMapping("/payment/create")
-    public CommenResult<Payment> commenResult(@RequestBody Payment payment) {
+    public CommenResult<Payment> create(@RequestBody Payment payment) {
         int result = paymentService.create(payment);
         if (result > 0) {
             return new CommenResult(200, "create success", result);
@@ -49,7 +49,7 @@ public class PaymentController {
     }
 
     @GetMapping("/payment/get/{id}")
-    public CommenResult commenResult(@PathVariable("id") Long id) {
+    public CommenResult getPayment(@PathVariable("id") Long id) {
         Payment payment = paymentService.getPaymentById(id);
         if (Objects.nonNull(payment)) {
             return new CommenResult(200, "insert success, " + port, payment);

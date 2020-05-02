@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.entities.CommenResult;
 import com.example.entities.Payment;
+import com.example.service.PaymentFeignService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,19 +15,16 @@ import javax.annotation.Resource;
 @Slf4j
 public class OrderController {
 
-    public static final String PAYMENT_URL = "http://cloud-payment-serivce";
-
     @Resource
-    private RestTemplate restTemplate;
+    private PaymentFeignService paymentFeignService;
 
     @GetMapping("/consumer/payment/create")
     public CommenResult<Payment> create(Payment payment) {
-        return restTemplate.postForObject(PAYMENT_URL + "/payment/create", payment, CommenResult.class);
+        return paymentFeignService.create(payment);
     }
-
 
     @GetMapping("/consumer/payment/get/{id}")
     public CommenResult commenResult(@PathVariable("id") Long id) {
-        return restTemplate.getForObject(PAYMENT_URL + "/payment/get/" + id, CommenResult.class);
+        return paymentFeignService.getPayment(id);
     }
 }
