@@ -64,6 +64,7 @@ public class PaymentController {
 
     @GetMapping("/payment/get/{id}")
     public CommenResult getPayment(@PathVariable("id") Long id) {
+        log.info(port);
         Payment payment = paymentService.getPaymentById(id);
         if (Objects.nonNull(payment)) {
             return new CommenResult(200, "insert success, " + port, payment);

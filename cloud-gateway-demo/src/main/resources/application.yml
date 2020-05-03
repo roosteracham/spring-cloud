@@ -6,14 +6,17 @@ spring:
     name: cloud-gateway
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
         - id: payment-route
-          uri: http://localhost:8001
+          uri: lb://CLOUD-PAYMENT-SERIVCE
           predicates:
             - Path=/payment/get/**
-#
+
 #        - id: payment-route2
-#          uri: http://localhost:8001
+#          uri: lb://cloud-payment-service
 #          predicates:
 #            - Path=/payment/cb/get/**
 eureka:
@@ -28,3 +31,8 @@ eureka:
   instance:
     instance-id: cloud-gateway
     prefer-ip-address: true
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
