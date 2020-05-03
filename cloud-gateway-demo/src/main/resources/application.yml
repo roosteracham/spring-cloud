@@ -11,9 +11,11 @@ spring:
           enabled: true
       routes:
         - id: payment-route
-          uri: lb://CLOUD-PAYMENT-SERIVCE
+          uri: lb://cloud-payment-serivce
           predicates:
             - Path=/payment/get/**
+            - After=2020-05-03T16:33:50.269+08:00[Asia/Shanghai]
+
 
 #        - id: payment-route2
 #          uri: lb://cloud-payment-service
