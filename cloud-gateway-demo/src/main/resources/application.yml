@@ -17,10 +17,10 @@ spring:
             - After=2020-05-03T16:33:50.269+08:00[Asia/Shanghai]
 
 
-#        - id: payment-route2
-#          uri: lb://cloud-payment-service
-#          predicates:
-#            - Path=/payment/cb/get/**
+        - id: payment-route2
+          uri: lb://cloud-payment-service
+          predicates:
+            - Path=/payment/cb/get/**
 eureka:
   client:
     # 不向注册中心注册自己
