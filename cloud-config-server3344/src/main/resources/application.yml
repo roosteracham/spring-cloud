@@ -1,0 +1,26 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/roosteracham/sc-config.git #git@github.com:roosteracham/sc-config.git
+          search-paths: sc-config
+          username: roosteracham
+          password: asd761234
+          default-label: master
+
+eureka:
+  client:
+    # 不向注册中心注册自己
+    registerWithEureka: false
+    # false 表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    fetchRegistry: true
+    serviceUrl:
+      # 设置于eureka server交互的地址查询服务和注册服务都系要依赖这个地址
+      defaultZone: http://sc1:7001/eureka/,http://sc2:7002/eureka/
+
