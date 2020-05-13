@@ -17,6 +17,8 @@
         <module>cloud-gateway-demo</module>
         <module>cloud-config-server3344</module>
         <module>cloudalibaba-provider-payment9001</module>
+        <module>cloudalibaba-consume-payment7003</module>
+        <module>nacos-config-client</module>
     </modules>
     <packaging>pom</packaging>
 
