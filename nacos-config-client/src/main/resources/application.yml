@@ -12,3 +12,19 @@ spring:
 
   profiles:
     active: product
+
+
+#*************** Config Module Related Configurations ***************#
+### If user MySQL as datasource:
+# spring.datasource.platform=mysql
+
+### Count of DB:
+db.num=1
+
+### Connect URL of DB:
+db:
+  url:
+    0: jdbc:mysql://had1:3306/nacos_config?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true
+db:
+  user: root
+  password: root123
